@@ -1,10 +1,11 @@
 Strategien:
-    a. Round-Robin
-    b. Least Connection
-    c. Auslastung
-    d. IP-Hash
-    e. simple Konfiguration
-    f. ?Dynamische Konfiguration der Server? (Ähnlich wie NGINX Plus API)
+
+    1. Round-Robin
+    2. Least Connection
+    3. Auslastung
+    4. IP-Hash
+    5. simple Konfiguration
+    6. ?Dynamische Konfiguration der Server? (Ähnlich wie NGINX Plus API)
 
 1. Load Balancer mit dummy Strategie (Jonathan)
 2. Service (Seb)
