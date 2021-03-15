@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  balancer:
+    image: "verteilte_systeme_balancer"
+    ports:
+      - "5000:8080"
+  service1:
+    image: "verteilte_systeme_balancer"
+    ports:
+      - "5001:8080"
+  service2:
+    image: "verteilte_systeme_balancer"
+    ports:
+      - "5002:8080"
+  service3:
+    image: "verteilte_systeme_balancer"
+    ports:
+      - "5003:8080"
