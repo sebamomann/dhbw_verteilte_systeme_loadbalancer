@@ -7,10 +7,10 @@ Strategien:
     5. simple Konfiguration
     6. ?Dynamische Konfiguration der Server? (Ähnlich wie NGINX Plus API)
 
-1. Load Balancer mit dummy Strategie (Jonathan)
-2. Service (Seb)
-3. Config parser (Jonathan)
-4. Service erweitern auf periodische Auslastung an LoadBalancer senden (Seb)
-5. Service endpoint um Auslastung zu setzen (Seb)
-6. Client (statistic über angesprochene Services) (Jonathan)
-7. Strategien (beide)
+1. [ ] Load Balancer mit dummy Strategie (Jonathan)
+2. [ ] Config parser (Jonathan)
+3. [X] Service - Grundfunktionalität (Seb)
+4. [ ] Service - Periodisches senden von Auslastung an LoadBalancer (Seb)
+5. [ ] Service - Endpunkt für manuelles ändern der Auslastung [Für Testzewecke] (Seb)
+6. [ ] Client - Statistik über angesprochene Services (Jonathan)
+7. [ ] Strategien (beide)
