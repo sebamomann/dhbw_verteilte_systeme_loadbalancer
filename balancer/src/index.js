@@ -4,7 +4,19 @@ const configYaml = require("config-yaml");
 const RoundRobin = require("./RoundRobin");
 const config = configYaml(process.env.CONFIG_FILE);
 
-const strategy = new RoundRobin(config.servers);
+const strategies = {
+    'round-robin': RoundRobin
+}
+if (!strategies[config.strategy]) {
+    console.error(`Invalid value for config field 'strategy'`);
+    console.error(`Strategy '${config.strategy}' is no valid strategy`);
+    console.error('Valid strategies are:');
+    for (let strat in strategies) {
+        console.error('    ' + strat);
+    }
+    process.exit(-1);
+}
+const strategy = new strategies[config.strategy](config.servers);
 
 const requestListener = function (client_req, client_res) {
     console.log('serving request to ' + client_req.url);
