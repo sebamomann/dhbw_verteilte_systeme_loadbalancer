@@ -1,0 +1,5 @@
+port: 80
+strategy: round-robin
+servers:
+  - localhost: 8080
+  - localhost: 8081

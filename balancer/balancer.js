@@ -1,4 +1,8 @@
 const http = require('http');
+const configYaml = require("config-yaml");
+const config = configYaml(`${__dirname}/config.example.yml`);
+
+console.log(config)
 
 const requestListener = function (client_req, client_res) {
     console.log('serve: ' + client_req.url);
@@ -25,4 +29,7 @@ const requestListener = function (client_req, client_res) {
 }
 
 const server = http.createServer(requestListener);
-server.listen(80);
+const port = config.port || 80;
+server.listen(80, () => {
+    console.log(`Listening on Port ${port} with ${config.servers.length} servers configured`);
+});
