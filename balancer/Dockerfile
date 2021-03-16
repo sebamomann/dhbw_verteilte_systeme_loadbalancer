@@ -13,7 +13,7 @@ RUN npm install
 # RUN npm ci --only=production
 
 # Bundle app source
-COPY balancer.js index.js
+COPY src src
 
 EXPOSE 80
-CMD [ "node", "index.js" ]
+CMD [ "node", "src/index.js" ]

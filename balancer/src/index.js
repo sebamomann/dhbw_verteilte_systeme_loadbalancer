@@ -1,16 +1,18 @@
 const http = require('http');
 require('dotenv').config();
 const configYaml = require("config-yaml");
+const RoundRobin = require("./RoundRobin");
 const config = configYaml(process.env.CONFIG_FILE);
 
-let index = 0;
+const strategy = new RoundRobin(config.servers);
 
 const requestListener = function (client_req, client_res) {
     console.log('serving request to ' + client_req.url);
 
+    let nextServer = strategy.getNextServer();
     let options = {
-        hostname: config.servers[index].host,
-        port: config.servers[index].port,
+        hostname: nextServer.host,
+        port: nextServer.port,
         path: client_req.url,
         method: client_req.method,
         headers: client_req.headers,
@@ -27,11 +29,6 @@ const requestListener = function (client_req, client_res) {
     client_req.pipe(proxy, {
         end: true
     });
-
-    index++;
-    if (index >= config.servers.length) {
-        index = 0;
-    }
 }
 
 const server = http.createServer(requestListener);
