@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "config-yaml": "^1.1.6"
+    "config-yaml": "^1.1.6",
+    "dotenv": "^8.2.0"
   }
 }

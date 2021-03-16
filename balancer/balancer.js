@@ -1,15 +1,16 @@
 const http = require('http');
+require('dotenv').config();
 const configYaml = require("config-yaml");
-const config = configYaml(`${__dirname}/config.example.yml`);
+const config = configYaml(process.env.CONFIG_FILE);
 
-console.log(config)
+let index = 0;
 
 const requestListener = function (client_req, client_res) {
-    console.log('serve: ' + client_req.url);
+    console.log('serving request to ' + client_req.url);
 
     let options = {
-        hostname: 'localhost',
-        port: 8080,
+        hostname: config.servers[index].host,
+        port: config.servers[index].port,
         path: client_req.url,
         method: client_req.method,
         headers: client_req.headers,
@@ -26,6 +27,11 @@ const requestListener = function (client_req, client_res) {
     client_req.pipe(proxy, {
         end: true
     });
+
+    index++;
+    if (index >= config.servers.length) {
+        index = 0;
+    }
 }
 
 const server = http.createServer(requestListener);
