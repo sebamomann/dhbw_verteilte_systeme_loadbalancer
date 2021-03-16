@@ -1,0 +1,9 @@
+port: 80
+strategy: round-robin
+servers:
+  - host: server1
+    port: 8080
+  - host: server2
+    port: 8080
+  - host: server3
+    port: 8080

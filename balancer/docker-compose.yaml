@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  balancer:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+      - CONFIG_FILE=/etc/config/config.example.yml
+    volumes:
+      - ./config.example.yml:/etc/config/config.example.yml:ro
+  server1:
+    build: ../service
+    environment:
+      - NAME=Service1
+  server2:
+    build: ../service
+    environment:
+      - NAME=Service2
+  server3:
+    build: ../service
+    environment:
+      - NAME=Service3
