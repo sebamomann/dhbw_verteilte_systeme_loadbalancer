@@ -1,4 +1,4 @@
-module.exports = class Metrics {
+module.exports = class SystemMetrics {
     numberOfCpus;
     totalMemory;
     usedMemory;

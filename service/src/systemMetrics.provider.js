@@ -1,7 +1,7 @@
-const Metrics = require('./metrics.model')
+const Metrics = require('./systemMetrics.model')
 var os = require('os');
 
-module.exports = class MetricsProvider {
+module.exports = class SystemMetricsProvider {
     // timeInterval;
     //
     // constructor(updateIntervalInMs) {

@@ -2,10 +2,10 @@
   "name": "service",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:watch": "nodemon index.js"
+    "start:watch": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
