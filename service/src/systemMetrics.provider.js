@@ -47,7 +47,7 @@ module.exports = class SystemMetricsProvider {
     //     }, updateIntervalInMs);
     // }
 
-    getStatistics() {
+    getMetrics() {
         const metrics = new Metrics();
 
         metrics.numberOfCpus = this.getNumberOfCpus();

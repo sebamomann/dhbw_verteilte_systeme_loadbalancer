@@ -1,24 +1,31 @@
-const SystemMetricsprovider = require("./systemMetrics.provider");
+const SystemMetricsProvider = require("./systemMetrics.provider");
+const ServerMetricsProvider = require("./serverMetrics.provider");
 
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
 require('dotenv').config();
 
 const port = 8080;
 const name = process.env.NAME;
 
-let systemMetricsProvider = new SystemMetricsprovider();
-
 app.get('/', (req, res) => {
-    res.send(`Hello World! My name is: ${name}`)
+    setTimeout(() => {
+        res.send(`Hello World! My name is: ${name}`)
+    }, Math.random() * 10000)
 })
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 });
 
+let systemMetricsProvider = new SystemMetricsProvider();
+let serverMetricsProvider = new ServerMetricsProvider(server);
+
 setInterval(() => {
-    const systemMetrics = systemMetricsProvider.getStatistics();
+    const systemMetrics = systemMetricsProvider.getMetrics();
     console.log(systemMetrics);
-}, 1 * 1000)
+
+    const serverMetrics = serverMetricsProvider.getMetrics();
+    console.log(serverMetrics);
+}, 500)
