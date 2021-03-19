@@ -5,7 +5,7 @@
 5. [ ] Service - Endpunkt für manuelles ändern der Auslastung [Für Testzewecke] (Seb)
 6. [ ] Client - Statistik über angesprochene Services (Jonathan)
 7. [ ] Strategien (beide)
-    1. [ ] Round-Robin
+    1. [X] Round-Robin
     2. [ ] Least Connection
     3. [ ] Auslastung
     4. [ ] IP-Hash
