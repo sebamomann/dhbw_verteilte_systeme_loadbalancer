@@ -1,4 +1,4 @@
-const Strategy = require("./strategy");
+const Strategy = require("../strategy");
 
 module.exports = class RoundRobin extends Strategy {
     index = 0;
