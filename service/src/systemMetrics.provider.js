@@ -8,6 +8,8 @@ module.exports = class SystemMetricsProvider {
     //     this.timeInterval = this.setUpdateCycle(updateIntervalInMs);
     // }
 
+    override = {};
+
     constructor() {
     }
 
@@ -56,6 +58,12 @@ module.exports = class SystemMetricsProvider {
         metrics.usedMemory = this.getUsedMemory();
         metrics.usedMemoryPercentage = this.getUsedMemoryPercentage();
 
+        Object.assign(metrics, this.override);
+
         return metrics;
+    }
+
+    setOverride(body) {
+        this.override = body;
     }
 }
