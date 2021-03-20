@@ -1,17 +1,18 @@
 const SystemMetricsProvider = require("./systemMetrics.provider");
 const ServerMetricsProvider = require("./serverMetrics.provider");
 
+const http = require("http");
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 require('dotenv').config();
 
 const port = 8080;
-const name = process.env.NAME;
+const serviceName = process.env.NAME;
 
 let server;
 
@@ -20,7 +21,7 @@ let serverMetricsProvider = new ServerMetricsProvider();
 
 app.get('/', (req, res) => {
     setTimeout(() => {
-        res.send(`Hello World! My name is: ${name}`)
+        res.send(`Hello World! My name is: ${serviceName}`)
     }, Math.random() * 10000)
 })
 
@@ -50,12 +51,42 @@ serverMetricsProvider.setServer(server);
 
 setInterval(() => {
     const systemMetrics = systemMetricsProvider.getMetrics();
-    console.log(systemMetrics);
+    post(systemMetrics, "systemmetrics");
 
     const callback = (serverMetrics) => {
-        console.log(serverMetrics);
+        post(serverMetrics, "servermetrics");
     }
+    serverMetricsProvider.getMetrics(callback);
 
-    const serverMetrics = serverMetricsProvider.getMetrics(callback);
+}, 1000)
 
-}, 500)
+function post(data, path) {
+    data = {name: serviceName, ...data};
+
+    data = JSON.stringify(data);
+
+    // An object of options to indicate where to post to
+    var post_options = {
+        host: 'localhost',
+        port: '80',
+        path: "/" + path,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(data)
+        }
+    };
+
+    // Set up the request
+    var post_req = http.request(post_options, function (res) {
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            console.log('Response: ' + chunk);
+        });
+    });
+
+    // post the data
+    post_req.write(data);
+    post_req.end();
+
+}
