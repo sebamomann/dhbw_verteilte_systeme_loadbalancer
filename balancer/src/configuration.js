@@ -1,4 +1,6 @@
 const RoundRobin = require("./strategies/RoundRobin");
+const LeastConnection = require("./strategies/LeastConnection");
+const Server = require("./server.model");
 const configYaml = require("config-yaml");
 require('dotenv').config();
 
@@ -6,7 +8,8 @@ module.exports = class Configuration {
     constructor() {
         this.config = configYaml(process.env.CONFIG_FILE, {});
         this.strategies = {
-            'round-robin': RoundRobin
+            'round-robin': RoundRobin,
+            'least-connection': LeastConnection
         }
     }
 
@@ -28,6 +31,6 @@ module.exports = class Configuration {
     }
 
     get servers() {
-        return this.config.servers;
+        return this.config.servers.map(server => new Server(server.host, server.port));
     }
 }
