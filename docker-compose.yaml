@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   balancer:
-    build: .
+    build: ./balancer
     ports:
       - "80:80"
     environment:
@@ -10,19 +10,19 @@ services:
     volumes:
       - ./config.example.yml:/etc/config/config.example.yml:ro
   server1:
-    build: ../service
+    build: ./service
     ports:
       - "8081:8080"
     environment:
       - NAME=server1
   server2:
-    build: ../service
+    build: ./service
     ports:
       - "8082:8080"
     environment:
       - NAME=server2
   server3:
-    build: ../service
+    build: ./service
     ports:
       - "8083:8080"
     environment:
