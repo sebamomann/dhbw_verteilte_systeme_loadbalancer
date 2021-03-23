@@ -10,8 +10,15 @@
       }
 
       textarea {
-        height: 120px;
+        height: 100px;
         font-size: 12px;
+
+        &:read-only {
+          background-color: lightgray;
+          border: none;
+          border-radius: 5px;
+          padding: 10px;
+        }
       }
     }
   }

@@ -10,10 +10,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
-import { MetricsOverrideFormComponent } from './metrics-override-form/metrics-override-form.component';
+import {MetricsOverrideFormComponent} from './metrics-override-form/metrics-override-form.component';
 import {MatButtonModule} from "@angular/material/button";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatSnackBarModule,
     FormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -27,6 +27,13 @@ export class MetricsOverrideFormComponent implements OnInit {
     },
   ];
   textareacontent: string;
+  jsonExample = {
+    "numberOfCpus": 1,
+    "totalMemory": 1,
+    "usedMemory": 1,
+    "usedMemoryPercentage": 1,
+    "freeMemory": 1
+  };
 
   constructor(private restService: RestService, private _snackBar: MatSnackBar) {
   }
