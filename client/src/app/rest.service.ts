@@ -40,4 +40,23 @@ export class RestService {
       })
     );
   }
+
+  setServerMetrics(host: string, textareacontent: string) {
+    const url = `${host}manipulate/systemmetrics`;
+
+    const res = this.httpClient.post(url, JSON.parse(textareacontent), {
+      observe: 'response',
+      reportProgress: true,
+      headers: {"Content-Type": "application/json"}
+    });
+
+    return res.pipe(
+      map(response => {
+        return response.body;
+      }),
+      catchError((err) => {
+        throw err;
+      })
+    );
+  }
 }

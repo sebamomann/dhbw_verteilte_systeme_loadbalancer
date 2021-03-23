@@ -1,0 +1,32 @@
+<div class="wrapper">
+  <mat-form-field appearance="fill">
+    <mat-label>Server to override</mat-label>
+    <mat-select [(ngModel)]="selectedServer" name="server-select">
+      <mat-option *ngFor="let server of servers, let index" [value]="server.value">
+        {{server.text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <form action="">
+    <mat-form-field class="example-full-width">
+      <mat-label>Override Object</mat-label>
+      <textarea (keyup)="onKey($event)" matInput></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Override Object Template</mat-label>
+      <textarea matInput readonly>
+      {
+        "numberOfCpus": 1,
+        "totalMemory": 1,
+        "usedMemory": 1,
+        "usedMemoryPercentage": 1,
+        "freeMemory": 1
+      }
+    </textarea>
+    </mat-form-field>
+
+    <button mat-raised-button (click)="submit()">submit</button>
+  </form>
+</div>

@@ -1,0 +1,18 @@
+.wrapper {
+  width: 100%;
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    mat-form-field {
+      &:first-of-type {
+      }
+
+      textarea {
+        height: 120px;
+        font-size: 12px;
+      }
+    }
+  }
+}

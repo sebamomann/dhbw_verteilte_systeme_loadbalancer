@@ -3,8 +3,14 @@ const SystemMetricsProvider = require("./systemMetrics.provider");
 const http = require("http");
 const express = require('express');
 const bodyParser = require('body-parser');
+var cors = require('cors')
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 const app = express();
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 

@@ -12,12 +12,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
+import { MetricsOverrideFormComponent } from './metrics-override-form/metrics-override-form.component';
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerMetricsComponent,
-    StrategyFormComponent
+    StrategyFormComponent,
+    MetricsOverrideFormComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatSelectModule,
     MatSnackBarModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
