@@ -41,6 +41,7 @@ server = app.listen(port, () => {
 setInterval(() => {
     const systemMetrics = systemMetricsProvider.getMetrics();
     post(systemMetrics, "systemmetrics");
+    console.log("sending systemmetrics")
 }, 1000)
 
 function post(data, path) {
