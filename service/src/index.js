@@ -20,7 +20,7 @@ let systemMetricsProvider = new SystemMetricsProvider();
 app.get('/', (req, res) => {
     setTimeout(() => {
         res.send(`Hello World! My name is: ${serviceName}`)
-    }, Math.random() * 10000)
+    }, Math.random() * 1000)
 })
 
 app.post('/manipulate/systemmetrics', (req, res) => {
