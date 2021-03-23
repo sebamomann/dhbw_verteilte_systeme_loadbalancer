@@ -35,8 +35,10 @@ const redirectRequest = function (client_req, client_res) {
     proxy.on('error', function (err) {
         nextServer.available = false;
         setTimeout(() => {
+            // Metric erhalten?
             nextServer.available = true;
         }, 5000);
+        // an den nächsten schicken
         client_res.writeHead(500);
         client_res.end();
     });
@@ -60,6 +62,12 @@ http
             client_req.on('end', function () {
                 client_res.writeHead(204, {})
             })
+        } else if(client_req.method === 'GET' && client_req.url === '/servers/metrics') {
+            client_res.writeHead(200, {"Content-Type": "application/json"});
+            let json = JSON.stringify({
+                servers: config.servers
+            });
+            client_res.end(json);
         } else {
             redirectRequest(client_req, client_res);
         }
