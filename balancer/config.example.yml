@@ -1,5 +1,7 @@
 port: 80
-strategy: round-robin
+#strategy: round-robin
+strategy: least-connection
+#strategy: ip-hash
 servers:
   - host: server1
     port: 8080
