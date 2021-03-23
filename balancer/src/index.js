@@ -22,7 +22,6 @@ const redirectRequest = function (client_req, client_res) {
         body: client_req.body,
         maxAttempts: 1
     };
-    nextServer.metrics.connections++;
 
     let proxy = http.request(options, function (res) {
         client_res.writeHead(res.statusCode, res.headers);
