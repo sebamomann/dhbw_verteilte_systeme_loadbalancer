@@ -62,19 +62,19 @@ http
             client_req.on('end', function () {
                 client_res.writeHead(204, {});
             })
-        } else if(client_req.method === 'GET' && client_req.url === '/servers/metrics') {
-            client_res.writeHead(200, {"Content-Type": "application/json"});
+        } else if (client_req.method === 'GET' && client_req.url === '/servers/metrics') {
+            client_res.writeHead(200, {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"});
             let json = JSON.stringify({
                 servers: config.servers
             });
             client_res.end(json);
-        } else if(client_req.method === 'POST' && client_req.url === '/config') {
+        } else if (client_req.method === 'POST' && client_req.url === '/config') {
             client_req.on('data', function (data) {
                 data = JSON.parse(data.toString());
                 config.changeStrategy(data.strategy);
             });
             client_req.on('end', function () {
-                client_res.writeHead(201);
+                client_res.writeHead(201, {"Access-Control-Allow-Origin": "*"});
                 client_res.end();
             });
         } else {
