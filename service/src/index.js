@@ -67,7 +67,7 @@ function post(data, path) {
 
     // An object of options to indicate where to post to
     var post_options = {
-        host: 'localhost',
+        host: 'balancer',
         port: '80',
         path: "/" + path,
         method: 'POST',
