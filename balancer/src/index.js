@@ -60,7 +60,7 @@ http
                 }
             })
             client_req.on('end', function () {
-                client_res.writeHead(204, {})
+                client_res.writeHead(204, {});
             })
         } else if(client_req.method === 'GET' && client_req.url === '/servers/metrics') {
             client_res.writeHead(200, {"Content-Type": "application/json"});
@@ -68,6 +68,15 @@ http
                 servers: config.servers
             });
             client_res.end(json);
+        } else if(client_req.method === 'POST' && client_req.url === '/config/strategy') {
+            client_req.on('data', function (data) {
+                data = JSON.parse(data.toString());
+                config.changeStrategy(data.strategy);
+            });
+            client_req.on('end', function () {
+                client_res.writeHead(201);
+                client_res.end();
+            });
         } else {
             redirectRequest(client_req, client_res);
         }

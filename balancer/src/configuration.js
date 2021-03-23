@@ -46,4 +46,10 @@ module.exports = class Configuration {
         }
         this._strategy = new this.strategies[this.config.strategy](this.servers);
     }
+
+    changeStrategy(newStrategy) {
+        this.config.strategy = newStrategy;
+        this._initStrategy();
+        console.log('Changed to strategy', newStrategy);
+    }
 }
