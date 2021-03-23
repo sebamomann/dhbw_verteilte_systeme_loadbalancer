@@ -29,7 +29,7 @@ const redirectRequest = function (client_req, client_res) {
         res.pipe(client_res, {
             end: true
         });
-        nextServer.metrics.connections++;
+        nextServer.metrics.connections--;
     });
 
     proxy.on('error', function (err) {
