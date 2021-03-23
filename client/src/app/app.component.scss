@@ -1,0 +1,26 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .metrics {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .strategy {
+  }
+
+  .override {
+  }
+
+  .analyzer {
+    app-analyzer {
+      display: inline-block;
+    }
+  }
+
+  .visualizer {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}

@@ -59,4 +59,14 @@ export class RestService {
       })
     );
   }
+
+  call() {
+    const req = this.http.get<any>(environment.balancerUrl);
+
+    return req.pipe(
+      map(res =>
+        res
+      )
+    )
+  }
 }

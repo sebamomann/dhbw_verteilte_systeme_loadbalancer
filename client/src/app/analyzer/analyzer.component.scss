@@ -1,0 +1,12 @@
+form {
+  width: auto;
+
+  mat-form-field {
+    padding: 10px;
+  }
+
+  mat-form-field, button {
+    width: auto;
+    margin-right: 10px;
+  }
+}

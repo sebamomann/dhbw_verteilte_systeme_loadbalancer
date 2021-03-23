@@ -1,5 +1,16 @@
-<app-server-metrics></app-server-metrics>
-<br/>
-<app-strategy-form></app-strategy-form>
-<br/>
-<app-metrics-override-form></app-metrics-override-form>
+<div class="wrapper">
+  <div class="metrics">
+    <app-server-metrics></app-server-metrics>
+  </div>
+  <div class="override">
+    <app-metrics-override-form></app-metrics-override-form>
+  </div>
+  <div class="analyzer">
+    <app-strategy-form></app-strategy-form>
+
+    <app-analyzer (result)="getResults($event)"></app-analyzer>
+  </div>
+  <div class="visualizer">
+    <app-visualizer #visualizer></app-visualizer>
+  </div>
+</div>

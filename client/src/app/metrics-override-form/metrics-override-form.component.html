@@ -11,13 +11,9 @@
   <form action="">
     <mat-form-field class="example-full-width">
       <mat-label>Override Object</mat-label>
-      <textarea (keyup)="onKey($event)" matInput></textarea>
+      <textarea rows="3" [rows]="5" (keyup)="onKey($event)" matInput></textarea>
     </mat-form-field>
-
-    <code>
-      {{jsonExample | json}}
-    </code>
-
-    <button mat-raised-button (click)="submit()">submit</button>
   </form>
+
+  <button mat-raised-button (click)="submit()">submit</button>
 </div>

@@ -1,0 +1,24 @@
+<div>
+  <form [formGroup]="event" #formDirective="ngForm">
+    <mat-form-field>
+      <label for="link">
+        <input formControlName="parallel"
+               id="link"
+               placeholder="parallel requests"
+               matInput>
+      </label>
+    </mat-form-field>
+    <button (click)="start()"
+            mat-raised-button>
+      Start
+    </button>
+    <button (click)="stop()"
+            mat-raised-button>
+      Stop
+    </button>
+    <button (click)="reset()"
+            mat-raised-button>
+      Reset
+    </button>
+  </form>
+</div>

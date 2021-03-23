@@ -1,0 +1,8 @@
+<div class="result-wrapper">
+  <div class="result-block" *ngFor="let result of results, trackBy:identify">
+    <span [ngClass]="{'server1': result.server1 === true, 'pending': result.server1 === undefined }"></span>
+    <span [ngClass]="{'server2': result.server2 === true, 'pending': result.server2 === undefined }"></span>
+    <span [ngClass]="{'server3': result.server3 === true, 'pending': result.server3 === undefined }"></span>
+    <span>{{result.index}}</span>
+  </div>
+</div>

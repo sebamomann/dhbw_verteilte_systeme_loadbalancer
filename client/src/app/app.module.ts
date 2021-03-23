@@ -9,19 +9,23 @@ import {StrategyFormComponent} from './strategy-form/strategy-form.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {MetricsOverrideFormComponent} from './metrics-override-form/metrics-override-form.component';
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
+import { AnalyzerComponent } from './analyzer/analyzer.component';
+import { VisualizerComponent } from './visualizer/visualizer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerMetricsComponent,
     StrategyFormComponent,
-    MetricsOverrideFormComponent
+    MetricsOverrideFormComponent,
+    AnalyzerComponent,
+    VisualizerComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ import {CommonModule} from "@angular/common";
     FormsModule,
     MatIconModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
