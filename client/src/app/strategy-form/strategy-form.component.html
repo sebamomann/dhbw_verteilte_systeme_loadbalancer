@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+  <mat-label>Strategie</mat-label>
+  <mat-select [(ngModel)]="currentStrategy" (valueChange)="changesStrategy()">
+    <mat-option *ngFor="let strategy of strategies" [value]="strategy.value">
+      {{strategy.text}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

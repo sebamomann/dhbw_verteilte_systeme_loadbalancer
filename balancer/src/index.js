@@ -50,7 +50,15 @@ const redirectRequest = function (client_req, client_res) {
 
 http
     .createServer((client_req, client_res) => {
-        if (client_req.method === 'POST' && client_req.url === '/systemmetrics') {
+        if (client_req.method === 'OPTIONS') {
+            client_res.writeHead(200, {
+                "Accept": "application/json",
+                'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+                "Access-Control-Allow-Origin": "*",
+                'Access-Control-Allow-Headers': 'Content-Type'
+            });
+            client_res.end();
+        } else if (client_req.method === 'POST' && client_req.url === '/systemmetrics') {
             client_req.on('data', function (data) {
                 data = JSON.parse(data.toString());
                 const {name, ...metrics} = data;
@@ -63,7 +71,10 @@ http
                 client_res.writeHead(204, {});
             })
         } else if (client_req.method === 'GET' && client_req.url === '/servers/metrics') {
-            client_res.writeHead(200, {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"});
+            client_res.writeHead(200, {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            });
             let json = JSON.stringify({
                 servers: config.servers
             });
@@ -74,8 +85,12 @@ http
                 config.changeStrategy(data.strategy);
             });
             client_req.on('end', function () {
-                client_res.writeHead(201, {"Access-Control-Allow-Origin": "*"});
-                client_res.end();
+                client_res.writeHead(201, {
+                    "Content-Type": "application/json",
+                    'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+                    "Access-Control-Allow-Origin": "*",
+                    'Access-Control-Allow-Headers': 'Content-Type'
+                });
             });
         } else {
             redirectRequest(client_req, client_res);

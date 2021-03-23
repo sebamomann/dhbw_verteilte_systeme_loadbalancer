@@ -10,7 +10,7 @@ export class ServerMetricsComponent implements OnInit {
 
   public servers;
 
-  displayedColumns: string[] = ['name', 'connections', 'cpuUsage', 'memoryUsage'];
+  displayedColumns: string[] = ['name', 'available', 'connections', 'cpuUsage', 'memoryUsage'];
 
   private seconds = 1; // seconds for server data reload
 

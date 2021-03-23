@@ -2,14 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../environments/environment";
-import {map} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private httpClient: HttpClient) {
   }
 
   getServers(): Observable<any> {
@@ -20,5 +20,24 @@ export class RestService {
         res.servers
       )
     )
+  }
+
+  public changeStrategy(strategy: string) {
+    const url = `${environment.balancerUrl}config`;
+
+    const res = this.httpClient.post(url, {strategy}, {
+      observe: 'response',
+      reportProgress: true,
+      headers: {"Content-Type": "application/json"}
+    });
+
+    return res.pipe(
+      map(response => {
+        return response.body;
+      }),
+      catchError((err) => {
+        throw err;
+      })
+    );
   }
 }

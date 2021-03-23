@@ -5,6 +5,14 @@
       <td mat-cell *matCellDef="let server"> {{server.host}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="available">
+      <th mat-header-cell *matHeaderCellDef> health</th>
+      <td mat-cell *matCellDef="let server">
+        <mat-icon *ngIf="server.available">favorite</mat-icon>
+        <mat-icon *ngIf="!server.available">healing</mat-icon>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="connections">
       <th mat-header-cell *matHeaderCellDef> #of conns.</th>
       <td mat-cell *matCellDef="let server"> {{server.metrics.connections}} </td>
