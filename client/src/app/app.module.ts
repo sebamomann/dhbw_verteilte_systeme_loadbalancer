@@ -1,18 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {AppComponent} from './app.component';
+import {ServerMetricsComponent} from './server-metrics/server-metrics.component';
+import {HttpClientModule} from "@angular/common/http";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ServerMetricsComponent
   ],
   imports: [
     BrowserModule,
-    NoopAnimationsModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
