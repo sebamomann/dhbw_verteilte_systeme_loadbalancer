@@ -1,5 +1,4 @@
 const SystemMetricsProvider = require("./systemMetrics.provider");
-const ServerMetricsProvider = require("./serverMetrics.provider");
 
 const http = require("http");
 const express = require('express');
@@ -17,7 +16,6 @@ const serviceName = process.env.NAME;
 let server;
 
 let systemMetricsProvider = new SystemMetricsProvider();
-let serverMetricsProvider = new ServerMetricsProvider();
 
 app.get('/', (req, res) => {
     setTimeout(() => {
@@ -34,30 +32,13 @@ app.post('/manipulate/systemmetrics', (req, res) => {
     res.send();
 })
 
-app.post('/manipulate/servermetrics', (req, res) => {
-    const body = req.body;
-
-    serverMetricsProvider.setOverride(body);
-
-    res.status(204);
-    res.send();
-})
-
 server = app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 });
 
-serverMetricsProvider.setServer(server);
-
 setInterval(() => {
     const systemMetrics = systemMetricsProvider.getMetrics();
     post(systemMetrics, "systemmetrics");
-
-    const callback = (serverMetrics) => {
-        post(serverMetrics, "servermetrics");
-    }
-    serverMetricsProvider.getMetrics(callback);
-
 }, 1000)
 
 function post(data, path) {

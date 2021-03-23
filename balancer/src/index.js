@@ -32,7 +32,7 @@ const redirectRequest = function (client_req, client_res) {
         nextServer.metrics.connections++;
     });
 
-    proxy.on('error', function(err) {
+    proxy.on('error', function (err) {
         nextServer.available = false;
         setTimeout(() => {
             nextServer.available = true;
@@ -60,15 +60,6 @@ http
             client_req.on('end', function () {
                 client_res.writeHead(204, {})
             })
-        } else if (client_req.method === 'POST' && client_req.url === '/servermetrics') {
-        //     client_req.on('data', function (data) {
-        //         data = JSON.parse(data.toString());
-        //         const {name, ...metrics} = data;
-        //         serverMetrics[name] = metrics;
-        //     })
-        //     client_req.on('end', function () {
-        //         client_res.writeHead(204, {})
-        //     })
         } else {
             redirectRequest(client_req, client_res);
         }
