@@ -6,7 +6,7 @@ module.exports = class Strategy {
     }
 
     get servers() {
-        return this._servers;
+        return this._servers.filter(server => server.available);
     }
 
     getNextServer(request) {

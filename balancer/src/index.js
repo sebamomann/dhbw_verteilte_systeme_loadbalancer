@@ -1,28 +1,26 @@
 const http = require('http');
 const Configuration = require('./configuration');
 
-/**
- * Array containing server metrics from all services
- */
-const serverMetrics = [];
-/**
- * Object containing system metrics from all services
- */
-const systemMetrics = [];
-
 const config = new Configuration();
 
 const redirectRequest = function (client_req, client_res) {
     console.log('serving request to ' + client_req.url);
 
     let nextServer = config.strategy.getNextServer(client_req);
+    if (!nextServer) {
+        console.error('No server available to route to!');
+        client_res.writeHead(500);
+        client_res.end();
+        return;
+    }
     let options = {
         hostname: nextServer.host,
         port: nextServer.port,
         path: client_req.url,
         method: client_req.method,
         headers: client_req.headers,
-        body: client_req.body
+        body: client_req.body,
+        maxAttempts: 1
     };
     nextServer.metrics.connections++;
 
@@ -34,6 +32,15 @@ const redirectRequest = function (client_req, client_res) {
         nextServer.metrics.connections++;
     });
 
+    proxy.on('error', function(err) {
+        nextServer.available = false;
+        setTimeout(() => {
+            nextServer.available = true;
+        }, 5000);
+        client_res.writeHead(500);
+        client_res.end();
+    });
+
     client_req.pipe(proxy, {
         end: true
     });
@@ -41,24 +48,27 @@ const redirectRequest = function (client_req, client_res) {
 
 http
     .createServer((client_req, client_res) => {
-        if (client_req.url === '/systemmetrics') {
+        if (client_req.method === 'POST' && client_req.url === '/systemmetrics') {
             client_req.on('data', function (data) {
                 data = JSON.parse(data.toString());
                 const {name, ...metrics} = data;
-                systemMetrics[name] = metrics;
+                let find = config.servers.find(server => server.host === name);
+                if (find) {
+                    find.metrics.memoryUsage = metrics.usedMemoryPercentage;
+                }
             })
             client_req.on('end', function () {
                 client_res.writeHead(204, {})
             })
-        } else if (client_req.url === '/servermetrics') {
-            client_req.on('data', function (data) {
-                data = JSON.parse(data.toString());
-                const {name, ...metrics} = data;
-                serverMetrics[name] = metrics;
-            })
-            client_req.on('end', function () {
-                client_res.writeHead(204, {})
-            })
+        } else if (client_req.method === 'POST' && client_req.url === '/servermetrics') {
+        //     client_req.on('data', function (data) {
+        //         data = JSON.parse(data.toString());
+        //         const {name, ...metrics} = data;
+        //         serverMetrics[name] = metrics;
+        //     })
+        //     client_req.on('end', function () {
+        //         client_res.writeHead(204, {})
+        //     })
         } else {
             redirectRequest(client_req, client_res);
         }

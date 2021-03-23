@@ -8,6 +8,7 @@ module.exports = class Server {
     constructor(host, port) {
         this.host = host;
         this.port = port;
+        this.available = true;
         this.metrics = new Metrics();
     }
 }
