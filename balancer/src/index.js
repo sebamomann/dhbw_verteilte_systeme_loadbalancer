@@ -91,6 +91,7 @@ http
                     "Access-Control-Allow-Origin": "*",
                     'Access-Control-Allow-Headers': 'Content-Type'
                 });
+                client_res.end();
             });
         } else {
             redirectRequest(client_req, client_res);
