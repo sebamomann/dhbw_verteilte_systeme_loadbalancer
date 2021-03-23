@@ -11,13 +11,19 @@ services:
       - ./config.example.yml:/etc/config/config.example.yml:ro
   server1:
     build: ../service
+    ports:
+      - "8081:8080"
     environment:
-      - NAME=Service1
+      - NAME=server1
   server2:
     build: ../service
+    ports:
+      - "8082:8080"
     environment:
-      - NAME=Service2
+      - NAME=server2
   server3:
     build: ../service
+    ports:
+      - "8083:8080"
     environment:
-      - NAME=Service3
+      - NAME=server3
