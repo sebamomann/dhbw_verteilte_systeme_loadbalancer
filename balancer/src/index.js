@@ -68,7 +68,7 @@ http
                 servers: config.servers
             });
             client_res.end(json);
-        } else if(client_req.method === 'POST' && client_req.url === '/config/strategy') {
+        } else if(client_req.method === 'POST' && client_req.url === '/config') {
             client_req.on('data', function (data) {
                 data = JSON.parse(data.toString());
                 config.changeStrategy(data.strategy);
