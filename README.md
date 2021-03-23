@@ -6,6 +6,6 @@
 6. [ ] Client - Statistik über angesprochene Services (Jonathan)
 7. [ ] Strategien (beide)
     1. [X] Round-Robin
-    2. [ ] Least Connection
+    2. [X] Least Connection
     3. [ ] Auslastung
-    4. [ ] IP-Hash
+    4. [X] IP-Hash

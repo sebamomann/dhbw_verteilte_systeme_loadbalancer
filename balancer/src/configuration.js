@@ -1,5 +1,6 @@
 const RoundRobin = require("./strategies/RoundRobin");
 const LeastConnection = require("./strategies/LeastConnection");
+const IPHash = require("./strategies/IPHash");
 const Server = require("./server.model");
 const configYaml = require("config-yaml");
 require('dotenv').config();
@@ -9,8 +10,12 @@ module.exports = class Configuration {
         this.config = configYaml(process.env.CONFIG_FILE, {});
         this.strategies = {
             'round-robin': RoundRobin,
-            'least-connection': LeastConnection
+            'least-connection': LeastConnection,
+            'ip-hash': IPHash,
         }
+
+        this._initServers();
+        this._initStrategy();
     }
 
     get port() {
@@ -18,6 +23,18 @@ module.exports = class Configuration {
     }
 
     get strategy() {
+        return this._strategy;
+    }
+
+    get servers() {
+        return this._servers;
+    }
+
+    _initServers() {
+        this._servers = this.config.servers.map(server => new Server(server.host, server.port));
+    }
+
+    _initStrategy() {
         if (!this.strategies[this.config.strategy]) {
             console.error(`Invalid value for config field 'strategy'`);
             console.error(`Strategy '${this.config.strategy}' is no valid strategy`);
@@ -27,10 +44,6 @@ module.exports = class Configuration {
             }
             process.exit(-1);
         }
-        return new this.strategies[this.config.strategy](this.config.servers);
-    }
-
-    get servers() {
-        return this.config.servers.map(server => new Server(server.host, server.port));
+        this._strategy = new this.strategies[this.config.strategy](this.servers);
     }
 }

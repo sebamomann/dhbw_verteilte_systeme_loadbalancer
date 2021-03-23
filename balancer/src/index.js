@@ -15,7 +15,7 @@ const config = new Configuration();
 const redirectRequest = function (client_req, client_res) {
     console.log('serving request to ' + client_req.url);
 
-    let nextServer = config.strategy.getNextServer();
+    let nextServer = config.strategy.getNextServer(client_req);
     let options = {
         hostname: nextServer.host,
         port: nextServer.port,
@@ -63,6 +63,6 @@ http
             redirectRequest(client_req, client_res);
         }
     })
-    .listen(config.port, () => {
+    .listen(config.port, '0.0.0.0', () => {
         console.log(`Listening on Port ${config.port} with ${config.servers.length} servers configured`);
     });

@@ -1,10 +1,15 @@
 module.exports = class Strategy {
+    _servers;
 
     constructor(servers) {
-        this.servers = servers;
+        this._servers = servers;
     }
 
-    getNextServer() {
+    get servers() {
+        return this._servers;
+    }
+
+    getNextServer(request) {
         throw new Error('Strategy must implement `getNextServer`');
     }
 }

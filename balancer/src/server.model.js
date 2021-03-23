@@ -1,18 +1,11 @@
 class Metrics {
-    constructor(
-
-    ) {
-        this.cpuUsage = 0;
-        this.memoryUsage = 0;
-        this.connections = 0;
-    }
+    cpuUsage = 0;
+    memoryUsage = 0;
+    connections = 0;
 }
 
 module.exports = class Server {
-    constructor(
-        host,
-        port
-    ) {
+    constructor(host, port) {
         this.host = host;
         this.port = port;
         this.metrics = new Metrics();
