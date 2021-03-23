@@ -18,6 +18,8 @@ let server;
 let systemMetricsProvider = new SystemMetricsProvider();
 
 app.get('/', (req, res) => {
+    console.log("Received Request " + Date.now());
+
     setTimeout(() => {
         res.send(`Hello World! My name is: ${serviceName}`)
     }, Math.random() * 1000)
