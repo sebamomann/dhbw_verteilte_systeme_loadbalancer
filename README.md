@@ -4,7 +4,8 @@
 4. [X] Service - Periodisches senden von Auslastung an LoadBalancer (Seb)
 5. [X] Service - Endpunkt für manuelles ändern der Auslastung [Für Testzewecke] (Seb)
 6. [ ] Client - Statistik über angesprochene Services (Jonathan)
-7. [ ] Strategien (beide)
+7. [ ] Jenkins deploy (Seba)
+8. [ ] Strategien (beide)
     1. [X] Round-Robin
     2. [X] Least Connection
     3. [ ] Auslastung
