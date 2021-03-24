@@ -14,7 +14,7 @@ services:
     container_name: dhbw_lb_client
     build:
       context: ./client
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-Deploy
       args:
         prod: "true"
     ports:
