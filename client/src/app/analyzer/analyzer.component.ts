@@ -75,7 +75,7 @@ export class AnalyzerComponent implements OnInit {
       server1: undefined,
       server2: undefined,
       server3: undefined,
-    }
+    })
     this.results.res.unshift(newResultObject)
 
     this.restService.call().subscribe((res) => {
