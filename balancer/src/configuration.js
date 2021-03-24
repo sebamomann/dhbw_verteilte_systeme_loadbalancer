@@ -31,7 +31,7 @@ module.exports = class Configuration {
     }
 
     _initServers() {
-        this._servers = this.config.servers.map(server => new Server(server.host, server.port));
+        this._servers = this.config.servers.map(server => new Server(server.host, server.port, server.name));
     }
 
     _initStrategy() {

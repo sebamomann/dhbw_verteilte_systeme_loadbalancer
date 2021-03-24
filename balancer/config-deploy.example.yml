@@ -4,8 +4,11 @@ strategy: least-connection
 #strategy: ip-hash
 servers:
   - host: dhbw_lb_service1
+    name: server1
     port: 8080
   - host: dhbw_lb_service2
+    name: server2
     port: 8080
   - host: dhbw_lb_service3
+    name: server3
     port: 8080

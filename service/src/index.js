@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
     console.log("Received Request " + Date.now());
 
     setTimeout(() => {
-        res.send({"message": "Hello World! My name is: ${serviceName}", "name": serviceName});
+        res.send({"message": `Hello World! My name is: ${serviceName}`, "name": serviceName});
     }, Math.random() * 1000)
 })
 

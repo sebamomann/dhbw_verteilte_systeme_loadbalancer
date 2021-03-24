@@ -4,8 +4,11 @@ strategy: least-connection
 #strategy: ip-hash
 servers:
   - host: server1
+    name: server1
     port: 8080
   - host: server2
+    name: server2
     port: 8080
   - host: server3
+    name: server3
     port: 8080

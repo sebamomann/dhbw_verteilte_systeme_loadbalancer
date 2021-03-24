@@ -5,8 +5,9 @@ class Metrics {
 }
 
 module.exports = class Server {
-    constructor(host, port) {
+    constructor(host, port,name) {
         this.host = host;
+        this.name = name;
         this.port = port;
         this.available = true;
         this.metrics = new Metrics();

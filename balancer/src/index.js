@@ -63,7 +63,7 @@ http
                 data = JSON.parse(data.toString());
                 const {name, ...metrics} = data;
                 console.log(`Received metric from ` + name)
-                let find = config.servers.find(server => server.host === name);
+                let find = config.servers.find(server => server.name === name);
                 find.lastMetricsUpdate = Date.now();
                 if (find) {
                     find.metrics.memoryUsage = metrics.usedMemoryPercentage;
