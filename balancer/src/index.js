@@ -62,6 +62,7 @@ http
             client_req.on('data', function (data) {
                 data = JSON.parse(data.toString());
                 const {name, ...metrics} = data;
+                console.log(`Received metric from ` + name)
                 let find = config.servers.find(server => server.host === name);
                 find.lastMetricsUpdate = Date.now();
                 if (find) {

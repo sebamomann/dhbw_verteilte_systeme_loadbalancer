@@ -73,6 +73,9 @@ function post(data, path) {
         res.on('data', function (chunk) {
             console.log('Response: ' + chunk);
         });
+        res.on('error', function (err) {
+            console.log('Sending error: ' + err);
+        });
     });
 
     // post the data
