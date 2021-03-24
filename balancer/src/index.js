@@ -4,11 +4,9 @@ const Configuration = require('./configuration');
 const config = new Configuration();
 
 const redirectRequest = function (client_req, client_res) {
-    console.log('serving request to ' + client_req.url);
-
     let nextServer = config.strategy.getNextServer(client_req);
     if (!nextServer) {
-        console.error('No server available to route to!');
+        console.error('No server available to route request!');
         client_res.writeHead(500);
         client_res.end();
         return;
@@ -34,13 +32,15 @@ const redirectRequest = function (client_req, client_res) {
 
     proxy.on('error', function (err) {
         nextServer.available = false;
-        setTimeout(() => {
-            // Metric erhalten?
-            nextServer.available = true;
+        let interval = setInterval(() => {
+            if (Date.now() - nextServer.lastMetricsUpdate < 5000) {
+                nextServer.available = true;
+                clearInterval(interval);
+            }
         }, 5000);
-        // an den nächsten schicken
-        client_res.writeHead(500);
-        client_res.end();
+
+        nextServer.metrics.connections--;
+        redirectRequest(client_req, client_res);
     });
 
     client_req.pipe(proxy, {
@@ -63,6 +63,7 @@ http
                 data = JSON.parse(data.toString());
                 const {name, ...metrics} = data;
                 let find = config.servers.find(server => server.host === name);
+                find.lastMetricsUpdate = Date.now();
                 if (find) {
                     find.metrics.memoryUsage = metrics.usedMemoryPercentage;
                 }

@@ -10,5 +10,6 @@ module.exports = class Server {
         this.port = port;
         this.available = true;
         this.metrics = new Metrics();
+        this.lastMetricsUpdate = 0;
     }
 }

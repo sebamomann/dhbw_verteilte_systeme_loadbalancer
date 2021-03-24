@@ -9,11 +9,11 @@ module.exports = class RoundRobin extends Strategy {
 
     getNextServer() {
         let servers = this.servers.filter(server => server.available);
-        let server1 = servers[this.index];
-        this.index++;
         if (this.index >= servers.length) {
             this.index = 0;
         }
+        let server1 = servers[this.index];
+        this.index++;
         return server1;
     }
 }
