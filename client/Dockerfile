@@ -5,8 +5,8 @@ COPY package*.json /app/
 RUN npm install
 COPY . /app
 
-ARG prod="true"
-RUN if [[ -z "$prod" == "true" ]] ; then npm run-script build:prod --outputPath=./dist/out ; else npm run-script build --outputPath=./dist/out ; fi
+ARG prod="false"
+RUN if [[ -z "$prod" == "true" ]] ; then npm run deploy --outputPath=./dist/out ; else npm run build --outputPath=./dist/out ; fi
 #RUN if [[ -z "$prod" == "true" ]] ; then echo true ; else echo false ; fi
 
 #RUN npm run build -- --outputPath=./dist/out --configuration $configuration
