@@ -21,7 +21,7 @@ services:
       args:
         prod: "true"
     ports:
-      - "34204:80"
+      - "34208:80"
     image: dhbw_lb_client
     networks:
       - sebamomann_dhbw_loadbalancer
