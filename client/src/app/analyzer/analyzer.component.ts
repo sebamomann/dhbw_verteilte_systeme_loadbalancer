@@ -8,7 +8,12 @@ import {RestService} from "../rest.service";
   styleUrls: ['./analyzer.component.scss']
 })
 export class AnalyzerComponent implements OnInit {
-  results = [];
+  public results = {
+    nrOfReqsServer1: 0,
+    nrOfReqsServer2: 0,
+    nrOfReqsServer3: 0,
+    res: []
+  };
 
   public event: FormGroup;
   private parallelRequests: number;
@@ -46,9 +51,19 @@ export class AnalyzerComponent implements OnInit {
   }
 
   reset() {
-    this.results = [];
+    this.results = {
+      nrOfReqsServer1: 0,
+      nrOfReqsServer2: 0,
+      nrOfReqsServer3: 0,
+      res: []
+    };
+
     this.currentIndex = 0;
     this.result.emit(this.results);
+  }
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   private call() {
@@ -61,19 +76,23 @@ export class AnalyzerComponent implements OnInit {
       server2: undefined,
       server3: undefined,
     }
-    this.results.unshift(newResultObject)
-    this.result.emit(this.results);
+    this.results.res.unshift(newResultObject)
 
     this.restService.call().subscribe((res) => {
-      const result = this.results.find((fResult) => fResult.index === thisIndex);
+      const result = this.results.res.find((fResult) => fResult.index === thisIndex);
       result.server1 = false;
       result.server2 = false;
       result.server3 = false;
+
+      const name = `nrOfReqs` + this.capitalizeFirstLetter(res.name);
+      this.results[name]++;
 
       result[res.name] = true;
       if (this.running) {
         this.call()
       }
     });
+
+    this.result.emit(this.results);
   }
 }

@@ -1,40 +1,59 @@
 .result-wrapper {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+
+  .result-header {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding: 0 10px;
+
+    span {
+      padding: 2px;
+      height: 25px;
+
+      &:last-of-type {
+        height: auto
+      }
+    }
+  }
+
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
 
-  .result-block {
-    display: inline-block;
+  .result-table {
+    .result-block {
+      display: inline-block;
 
-    span {
-      border: 1px solid gray;
-      width: 25px;
-      height: 25px;
-      display: block;
+      span {
+        border: 1px solid gray;
+        width: 25px;
+        height: 25px;
+        display: block;
 
-      &:last-of-type {
-        height: auto;
-        padding: 0;
-        font-size: 10px;
-        text-align: center;
+        &:last-of-type {
+          height: auto;
+          padding: 0;
+          font-size: 10px;
+          text-align: center;
+        }
+      }
+
+      .server1 {
+        background-color: green;
+      }
+
+      .server2 {
+        background-color: blue;
+      }
+
+      .server3 {
+        background-color: red;
+      }
+
+      .pending {
+        background-color: grey;
       }
     }
-
-    .server1 {
-      background-color: green;
-    }
-
-    .server2 {
-      background-color: blue;
-    }
-
-    .server3 {
-      background-color: red;
-    }
-
-    .pending {
-      background-color: grey;
-    }
   }
-
 }

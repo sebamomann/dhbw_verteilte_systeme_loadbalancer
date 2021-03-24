@@ -10,6 +10,9 @@ export class VisualizerComponent implements OnInit {
   public results: any;
 
   constructor() {
+    if (!this.results) {
+      this.results = {};
+    }
   }
 
   ngOnInit() {
