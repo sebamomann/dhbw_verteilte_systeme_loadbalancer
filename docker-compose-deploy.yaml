@@ -10,9 +10,9 @@ services:
       - "34205:80"
     environment:
       - NODE_ENV=production
-      - CONFIG_FILE=etc/config/config.example.yml
+      - CONFIG_FILE=/etc/config/config.example.yml
     volumes:
-      - ./balancer/config.example.yml:/etc/config/config.example.yml:ro
+      - ./balancer/config.example.yml:etc/config/config.example.yml:ro
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_client:
