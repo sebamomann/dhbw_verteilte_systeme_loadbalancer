@@ -38,9 +38,11 @@ const redirectRequest = function (client_req, client_res) {
             // Metric erhalten?
             nextServer.available = true;
         }, 5000);
+        nextServer.metrics.connections--;
         // an den nächsten schicken
-        client_res.writeHead(500);
-        client_res.end();
+        redirectRequest(client_req, client_res);
+        // client_res.writeHead(500);
+        // client_res.end();
     });
 
     client_req.pipe(proxy, {
