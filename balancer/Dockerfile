@@ -14,6 +14,7 @@ RUN npm install
 
 # Bundle app source
 COPY src src
+COPY config-deploy.example.yml config-deploy.example.yml
 
 EXPOSE 80
 CMD [ "node", "src/index.js" ]
