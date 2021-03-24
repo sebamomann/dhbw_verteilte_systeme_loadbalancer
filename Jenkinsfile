@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'docker-compose -f docker-compose-deploy.yaml up --build'
+                        sh 'docker-compose -f docker-compose-deploy.yaml -p "dhbw_loadbalancer" up --build'
                     } catch (err) {
                         error("Docker compose command failed")
                     }

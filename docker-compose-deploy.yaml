@@ -10,7 +10,7 @@ services:
       - "34205:80"
     environment:
       - NODE_ENV=production
-      - CONFIG_FILE=/config-deploy.example.yml
+      - CONFIG_FILE=../config-deploy.example.yml
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_client:

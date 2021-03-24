@@ -14,15 +14,15 @@
 
 To start balancer + services run
 ```
-docker-compose -f docker-compose.yaml up --build
+docker-compose -f docker-compose.yaml -p "dhbw_loadbalancer" up --build
 ```
 
 To start balancer + services + client run
 ```
-docker-compose -f docker-compose-with-client.yaml up --build
+docker-compose -f docker-compose-with-client.yaml -p "dhbw_loadbalancer" up --build
 ```
 
 To start balancer + services + client (with prod env) run
 ```
-docker-compose -f docker-compose-deploy.yaml up --build
+docker-compose -f docker-compose-deploy.yaml -p "dhbw_loadbalancer" up --build
 ```
