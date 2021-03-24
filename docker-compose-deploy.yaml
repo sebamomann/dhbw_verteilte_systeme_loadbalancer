@@ -13,7 +13,7 @@ services:
       - CONFIG_FILE=/etc/config/config-deploy.example.yml
     volumes:
       - ./balancer/config.example.yml:/etc/config/config.example.yml:ro
-      - ./balancer/config.example.yml:/etc/config/config-deploy.example.yml:ro
+      - ./balancer/config-deploy.example.yml:/etc/config/config-deploy.example.yml:ro
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_client:
