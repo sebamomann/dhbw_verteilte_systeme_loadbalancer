@@ -12,8 +12,8 @@ services:
       - NODE_ENV=production
       - CONFIG_FILE=/etc/config/config-deploy.example.yml
     volumes:
-      - ./balancer/config.example.yml:/etc/config/config.example.yml:ro
-      - ./balancer/config-deploy.example.yml:/etc/config/config-deploy.example.yml:ro
+      - ${PWD}/balancer/config.example.yml:/etc/config/config.example.yml:ro
+      - ${PWD}/balancer/config-deploy.example.yml:/etc/config/config-deploy.example.yml:ro
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_client:
@@ -29,7 +29,7 @@ services:
   dhbw_lb_service1:
     container_name: dhbw_lb_service1
     build: ./service
-    image: dhbw_lb_client
+    image: dhbw_lb_service1
     ports:
       - "34206:8080"
     environment:
