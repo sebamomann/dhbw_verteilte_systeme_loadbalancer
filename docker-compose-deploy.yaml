@@ -5,7 +5,7 @@ services:
     build: ./balancer
     image: dhbw_lb_balancer
     ports:
-      - "80:80"
+      - "34205:80"
     environment:
       - NODE_ENV=production
       - CONFIG_FILE=/etc/config/config.example.yml
