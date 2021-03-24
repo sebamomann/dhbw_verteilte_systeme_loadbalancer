@@ -1,5 +1,17 @@
 version: "3.3"
 services:
+  dhbw_lb_client:
+    container_name: dhbw_lb_client
+    build:
+      context: ./client
+      dockerfile: Dockerfile-Deploy
+      args:
+        prod: "true"
+    ports:
+      - "34209:80"
+    image: dhbw_lb_client
+    networks:
+      - sebamomann_dhbw_loadbalancer
   dhbw_lb_balancer:
     container_name: dhbw_lb_balancer
     build:
@@ -11,18 +23,6 @@ services:
     environment:
       - NODE_ENV=production
       - CONFIG_FILE=config-deploy.example.yml
-    networks:
-      - sebamomann_dhbw_loadbalancer
-  dhbw_lb_client:
-    container_name: dhbw_lb_client
-    build:
-      context: ./client
-      dockerfile: Dockerfile-Deploy
-      args:
-        prod: "true"
-    ports:
-      - "34209:80"
-    image: dhbw_lb_client
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_service1:
