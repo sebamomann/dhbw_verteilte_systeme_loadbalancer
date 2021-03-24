@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RestService} from "../rest.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-metrics-override-form',
@@ -13,27 +14,20 @@ export class MetricsOverrideFormComponent implements OnInit {
     {
       text: "Service 1",
       value: "0",
-      url: "http://localhost:8081/"
+      url: environment.service1Url
     },
     {
       text: "Service 2",
       value: "1",
-      url: "http://localhost:8082/"
+      url: environment.service2Url
     },
     {
       text: "Service 3",
       value: "2",
-      url: "http://localhost:8083/"
+      url: environment.service3Url
     },
   ];
   textareacontent: string;
-  jsonExample = {
-    "numberOfCpus": 1,
-    "totalMemory": 1,
-    "usedMemory": 1,
-    "usedMemoryPercentage": 1,
-    "freeMemory": 1
-  };
 
   constructor(private restService: RestService, private _snackBar: MatSnackBar) {
   }

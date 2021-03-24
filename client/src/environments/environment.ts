@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  balancerUrl: "http://localhost/"
+  balancerUrl: "http://localhost/",
+  service1Url: "http://localhost:8081/",
+  service2Url: "http://localhost:8082/",
+  service3Url: "http://localhost:8083/"
 };
 
 /*
