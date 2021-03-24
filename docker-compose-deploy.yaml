@@ -3,6 +3,7 @@ services:
   dhbw_lb_balancer:
     container_name: dhbw_lb_balancer
     build: ./balancer
+    image: dhbw_lb_balancer
     ports:
       - "80:80"
     environment:
@@ -17,15 +18,15 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile-Deploy
+      image: dhbw_lb_client
       args:
         prod: "true"
-    ports:
-      - "34205:80"
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_service1:
     container_name: dhbw_lb_service1
     build: ./service
+    image: dhbw_lb_client
     ports:
       - "34206:8080"
     environment:
@@ -36,6 +37,7 @@ services:
   dhbw_lb_service2:
     container_name: dhbw_lb_service2
     build: ./service
+    image: dhbw_lb_client
     ports:
       - "34207:8080"
     environment:
@@ -46,6 +48,7 @@ services:
   dhbw_lb_service3:
     container_name: dhbw_lb_service3
     build: ./service
+    image: dhbw_lb_client
     ports:
       - "34208:8080"
     environment:

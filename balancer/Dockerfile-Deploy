@@ -4,7 +4,7 @@ FROM node:14
 WORKDIR /usr/src/app
 COPY config-deploy.example.yml config.example.yml
 
-# Install app dependencies
+# Install app dependenciesebamomann_dhbw_loadbalancer_main_dhbw_lb_service3
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
