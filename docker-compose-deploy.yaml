@@ -2,7 +2,9 @@ version: "3.3"
 services:
   dhbw_lb_balancer:
     container_name: dhbw_lb_balancer
-    build: ./balancer
+    build:
+      context: ./balancer
+      dockerfile: Dockerfile-Deploy
     image: dhbw_lb_balancer
     ports:
       - "34205:80"
