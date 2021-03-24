@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'yes | cp ./balancer/src/config-deploy.example.yml ./balancer/src/config.example.yml'
+                        sh 'yes | cp ./balancer/config-deploy.example.yml ./balancer/config.example.yml'
                         sh 'docker-compose -f docker-compose-deploy.yaml up --build'
                     } catch (err) {
                         error("Docker compose command failed")
