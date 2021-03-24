@@ -13,7 +13,7 @@ services:
       - CONFIG_FILE=/etc/config/config.example.yml
     volumes:
       - type: bind
-        source: ./balancer/config.example.yml
+        source: ${PWD}/balancer/config.example.yml
         target: /etc/config/config.example.yml
     networks:
       - sebamomann_dhbw_loadbalancer
