@@ -57,9 +57,9 @@ function post(data, path) {
 
     // An object of options to indicate where to post to
     var post_options = {
-        host: process.env.BALANCER_URL || "balancer",
+        host: process.env.BALANCER_URL,
         port: '80',
-        path: path,
+        path: "/" + path,
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

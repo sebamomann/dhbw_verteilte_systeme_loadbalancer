@@ -71,6 +71,7 @@ http
             })
             client_req.on('end', function () {
                 client_res.writeHead(204, {});
+                client_res.end();
             })
         } else if (client_req.method === 'GET' && client_req.url === '/servers/metrics') {
             client_res.writeHead(200, {
