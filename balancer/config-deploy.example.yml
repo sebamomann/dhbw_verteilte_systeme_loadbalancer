@@ -1,0 +1,11 @@
+port: 80
+#strategy: round-robin
+strategy: least-connection
+#strategy: ip-hash
+servers:
+  - host: dhbw_lb_service1
+    port: 8080
+  - host: dhbw_lb_service2
+    port: 8080
+  - host: dhbw_lb_service3
+    port: 8080
