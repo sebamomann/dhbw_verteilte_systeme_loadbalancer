@@ -18,9 +18,9 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile-Deploy
-      image: dhbw_lb_client
       args:
         prod: "true"
+    image: dhbw_lb_client
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_service1:
