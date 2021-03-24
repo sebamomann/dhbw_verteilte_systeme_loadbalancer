@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 require('dotenv').config();
 
 const port = 8080;
-const serviceName = process.env.NAME;
+const serviceName = process.env.NAME || "MISSING ENV NAME";
 
 let server;
 

@@ -10,3 +10,19 @@
     2. [X] Least Connection
     3. [ ] Auslastung
     4. [X] IP-Hash
+
+
+To start balancer + services run
+```
+docker-compose -f docker-compose.yaml up --build
+```
+
+To start balancer + services + client run
+```
+docker-compose -f docker-compose-with-client.yaml up --build
+```
+
+To start balancer + services + client (with prod env) run
+```
+docker-compose -f docker-compose-deploy.yaml up --build
+```

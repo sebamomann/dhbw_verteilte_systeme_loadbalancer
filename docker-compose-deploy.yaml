@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  dhbw_lb_balancer:
+    name: dhbw_lb_balancer
+    build: ./balancer
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+      - CONFIG_FILE=/etc/config/config.example.yml
+    volumes:
+      - ./balancer/config.example.yml:/etc/config/config.example.yml:ro
+  dhbw_lb_client:
+    name: dhbw_lb_client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        prod: "true"
+    ports:
+      - "4201:80"
+  dhbw_lb_service1:
+    name: dhbw_lb_service1
+    build: ./service
+    ports:
+      - "8081:8080"
+    environment:
+      - NAME=server1
+  dhbw_lb_service2:
+    name: dhbw_lb_service2
+    build: ./service
+    ports:
+      - "8082:8080"
+    environment:
+      - NAME=server2
+  dhbw_lb_service3:
+    name: dhbw_lb_service3
+    build: ./service
+    ports:
+      - "8083:8080"
+    environment:
+      - NAME=server3

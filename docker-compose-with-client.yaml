@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  balancer:
+    build: ./balancer
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+      - CONFIG_FILE=/etc/config/config.example.yml
+    volumes:
+      - ./balancer/config.example.yml:/etc/config/config.example.yml:ro
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        prod: "false"
+    ports:
+      - "4201:80"
+  server1:
+    build: ./service
+    ports:
+      - "8081:8080"
+    environment:
+      - NAME=server1
+  server2:
+    build: ./service
+    ports:
+      - "8082:8080"
+    environment:
+      - NAME=server2
+  server3:
+    build: ./service
+    ports:
+      - "8083:8080"
+    environment:
+      - NAME=server3
