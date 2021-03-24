@@ -10,11 +10,7 @@ services:
       - "34205:80"
     environment:
       - NODE_ENV=production
-      - CONFIG_FILE=/etc/config/config.example.yml
-    volumes:
-      - type: bind
-        source: ${PWD}/balancer/config.example.yml
-        target: /etc/config/config.example.yml
+      - CONFIG_FILE=/etc/config/config-deploy.example.yml
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_client:
