@@ -14,6 +14,7 @@ pipeline {
             steps {
                 script {
                     try {
+                        bat("xcopy ./balancer/src/config-deploy.example.yml ./balancer/src/config.example.yml /O /X /E /H /K")
                         sh 'docker-compose -f docker-compose-deploy.yaml up --build'
                     } catch (err) {
                         error("Docker compose command failed")
