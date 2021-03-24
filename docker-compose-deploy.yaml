@@ -12,7 +12,9 @@ services:
       - NODE_ENV=production
       - CONFIG_FILE=/etc/config/config.example.yml
     volumes:
-      - ${PWD}/balancer/config.example.yml:/etc/config/config.example.yml:ro
+      - type: bind
+        source: ./balancer/config.example.yml
+        target: /etc/config/config.example.yml
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_client:
