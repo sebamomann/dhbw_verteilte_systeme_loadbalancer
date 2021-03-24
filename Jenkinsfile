@@ -16,7 +16,7 @@ pipeline {
                     try {
                         sh 'docker-compose -f docker-compose-deploy.yaml up --build'
                     } catch (err) {
-                        echo err.getMessage()
+                        error("Docker compose command failed")
                     }
                 }
             }
