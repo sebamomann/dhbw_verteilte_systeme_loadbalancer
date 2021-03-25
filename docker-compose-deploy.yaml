@@ -18,6 +18,9 @@ services:
       context: ./balancer
       dockerfile: Dockerfile
     image: dhbw_lb_balancer
+    limits:
+      cpus: '0.5'
+      memory: 500M
     ports:
       - "34205:80"
     environment:
@@ -34,6 +37,9 @@ services:
     environment:
       - NAME=server1
       - BALANCER_URL=dhbw_lb_balancer
+    limits:
+      cpus: '0.5'
+      memory: 100M
     networks:
       - sebamomann_dhbw_loadbalancer
   dhbw_lb_service2:
@@ -42,6 +48,9 @@ services:
     image: dhbw_lb_service2
     ports:
       - "34207:8080"
+    limits:
+      cpus: '0.1'
+      memory: 200M
     environment:
       - NAME=server2
       - BALANCER_URL=dhbw_lb_balancer
@@ -53,6 +62,9 @@ services:
     image: dhbw_lb_service3
     ports:
       - "34208:8080"
+    limits:
+      cpus: '0.1'
+      memory: 300M
     environment:
       - NAME=server3
       - BALANCER_URL=dhbw_lb_balancer

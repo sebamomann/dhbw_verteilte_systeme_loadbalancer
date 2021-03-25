@@ -4,4 +4,5 @@ module.exports = class SystemMetrics {
     usedMemory;
     usedMemoryPercentage;
     freeMemory;
+    cpuUsagePercentage;
 }

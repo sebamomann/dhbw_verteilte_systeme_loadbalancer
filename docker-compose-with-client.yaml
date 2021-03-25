@@ -23,15 +23,30 @@ services:
       - "8081:8080"
     environment:
       - NAME=server1
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 20M
   server2:
     build: ./service
     ports:
       - "8082:8080"
     environment:
       - NAME=server2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 50M
   server3:
     build: ./service
     ports:
       - "8083:8080"
     environment:
       - NAME=server3
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 100M

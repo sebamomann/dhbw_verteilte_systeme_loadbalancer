@@ -67,6 +67,7 @@ http
                 find.lastMetricsUpdate = Date.now();
                 if (find) {
                     find.metrics.memoryUsage = metrics.usedMemoryPercentage;
+                    find.metrics.cpuUsage = metrics.cpuUsagePercentage;
                 }
             })
             client_req.on('end', function () {

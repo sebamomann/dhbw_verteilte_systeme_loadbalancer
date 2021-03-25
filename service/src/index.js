@@ -44,8 +44,8 @@ server = app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 });
 
-setInterval(() => {
-    const systemMetrics = systemMetricsProvider.getMetrics();
+setInterval(async () => {
+    const systemMetrics = await systemMetricsProvider.getMetrics();
     post(systemMetrics, "systemmetrics");
     console.log("sending systemmetrics")
 }, 1000)
