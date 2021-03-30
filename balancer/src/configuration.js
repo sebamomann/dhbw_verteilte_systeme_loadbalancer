@@ -1,6 +1,7 @@
 const RoundRobin = require("./strategies/RoundRobin");
 const LeastConnection = require("./strategies/LeastConnection");
 const IPHash = require("./strategies/IPHash");
+const ResourceBased = require("./strategies/ResourceBased");
 const Server = require("./server.model");
 const configYaml = require("config-yaml");
 require('dotenv').config();
@@ -12,6 +13,7 @@ module.exports = class Configuration {
             'round-robin': RoundRobin,
             'least-connection': LeastConnection,
             'ip-hash': IPHash,
+            'resource-based': ResourceBased,
         }
 
         this._initServers();

@@ -1,7 +1,8 @@
 port: 80
 #strategy: round-robin
-strategy: least-connection
+#strategy: least-connection
 #strategy: ip-hash
+strategy: resource-based
 servers:
   - host: dhbw_lb_service1
     name: server1
