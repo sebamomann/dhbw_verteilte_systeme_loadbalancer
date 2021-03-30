@@ -20,6 +20,9 @@ export class StrategyFormComponent implements OnInit {
     }, {
       text: "Least Connections",
       value: "least-connection"
+    }, {
+      text: "Resource Based",
+      value: "resource-based"
     }
   ]
 
