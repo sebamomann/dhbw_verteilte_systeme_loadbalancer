@@ -5,10 +5,10 @@
 5. [X] Service - Endpunkt für manuelles ändern der Auslastung [Für Testzewecke] (Seb)
 6. [ ] Client - Statistik über angesprochene Services (Jonathan)
 7. [ ] Jenkins deploy (Seba)
-8. [ ] Strategien (beide)
+8. [X] Strategien (beide)
     1. [X] Round-Robin
     2. [X] Least Connection
-    3. [ ] Auslastung
+    3. [X] Auslastung
     4. [X] IP-Hash
 
 
