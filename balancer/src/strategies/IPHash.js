@@ -2,10 +2,6 @@ const Strategy = require("../strategy");
 const ipInt = require('ip-to-int');
 
 module.exports = class IPHash extends Strategy {
-    constructor(servers) {
-        super(servers);
-    }
-
     getNextServer(request) {
         let ip = request.connection.remoteAddress;
         console.log(ip);
