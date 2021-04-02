@@ -15,7 +15,7 @@ export class RestService {
   getServers(): Observable<any> {
     let url = environment.balancerUrl + "servers/metrics";
     if(environment.production) {
-      url = "http://" + environment.balancerUrl + "servers/metrics";
+      url = "https://" + environment.balancerUrl + "servers/metrics";
     }
     const req = this.http.get<any>(url);
 
@@ -29,7 +29,7 @@ export class RestService {
   public changeStrategy(strategy: string) {
     let url = environment.balancerUrl + "config";
     if(environment.production) {
-      url = "http://" + environment.balancerUrl + "config";
+      url = "https://" + environment.balancerUrl + "config";
     }
 
     const res = this.httpClient.post(url, {strategy}, {
@@ -70,7 +70,7 @@ export class RestService {
   call(requestId) {
     let url = environment.balancerUrl;
     if(environment.production) {
-      url = "http://" + requestId + "." + environment.balancerUrl;
+      url = "https://" + requestId + "." + environment.balancerUrl;
     }
 
     const req = this.http.get<any>(url);
