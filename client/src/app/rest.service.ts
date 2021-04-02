@@ -60,8 +60,13 @@ export class RestService {
     );
   }
 
-  call() {
-    const req = this.http.get<any>(environment.balancerUrl);
+  call(requestId) {
+    let url = environment.balancerUrl;
+    if(environment.production) {
+      url = "http://" + requestId + "." + environment.balancerUrl;
+    }
+
+    const req = this.http.get<any>(url);
 
     return req.pipe(
       map(res =>

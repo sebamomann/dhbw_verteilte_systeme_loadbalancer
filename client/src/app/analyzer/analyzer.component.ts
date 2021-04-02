@@ -79,7 +79,7 @@ export class AnalyzerComponent implements OnInit {
 
     this.results.res.unshift(newResultObject)
 
-    this.restService.call().subscribe((res) => {
+    this.restService.call(thisIndex).subscribe((res) => {
       const result = this.results.res.find((fResult) => fResult.index === thisIndex);
       result.server1 = false;
       result.server2 = false;
