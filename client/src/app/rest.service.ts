@@ -13,7 +13,11 @@ export class RestService {
   }
 
   getServers(): Observable<any> {
-    const req = this.http.get<any>(environment.balancerUrl + "servers/metrics");
+    let url = environment.balancerUrl + "servers/metrics";
+    if(environment.production) {
+      url = "http://" + environment.balancerUrl + "servers/metrics";
+    }
+    const req = this.http.get<any>(url);
 
     return req.pipe(
       map(res =>
@@ -23,7 +27,10 @@ export class RestService {
   }
 
   public changeStrategy(strategy: string) {
-    const url = `${environment.balancerUrl}config`;
+    let url = environment.balancerUrl + "config";
+    if(environment.production) {
+      url = "http://" + environment.balancerUrl + "config";
+    }
 
     const res = this.httpClient.post(url, {strategy}, {
       observe: 'response',
