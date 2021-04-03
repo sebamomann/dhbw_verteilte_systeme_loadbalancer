@@ -11,7 +11,7 @@ export class ServerMetricsComponent implements OnInit {
   public servers;
 
   displayedColumns: string[] = ['name', 'available', 'connections', 'cpuUsage', 'memoryUsage'];
-
+  totalRequests: any;
   private seconds = 1; // seconds for server data reload
 
   constructor(private restService: RestService) {
@@ -22,6 +22,11 @@ export class ServerMetricsComponent implements OnInit {
       this.restService.getServers()
         .subscribe((res) => {
           this.servers = res;
+
+          this.totalRequests = 0;
+          this.servers.foreEach((fServer) => {
+            this.totalRequests += fServer.metrics.connections;
+          })
           console.log(res);
         });
     }, this.seconds * 1000)
