@@ -24,10 +24,10 @@ export class ServerMetricsComponent implements OnInit {
           this.servers = res;
 
           this.totalRequests = 0;
-          this.servers.foreEach((fServer) => {
-            this.totalRequests += fServer.metrics.connections;
-          })
-          console.log(res);
+          res.foreEach(
+            (fServer) => {
+              this.totalRequests += fServer.metrics.connections;
+            })
         });
     }, this.seconds * 1000)
   }
