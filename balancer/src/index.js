@@ -80,6 +80,7 @@ http
                 "Access-Control-Allow-Origin": "*"
             });
             let json = JSON.stringify({
+                strategy: config.strategy,
                 servers: config.servers
             });
             client_res.end(json);
