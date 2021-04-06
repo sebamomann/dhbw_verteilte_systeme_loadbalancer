@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
     setTimeout(() => {
         res.send({"message": `Hello World! My name is: ${serviceName}`, "name": serviceName});
-    }, Math.random() * 100)
+    }, (Math.random() * 2000) + 1000)
 })
 
 app.post('/manipulate/systemmetrics', (req, res) => {
