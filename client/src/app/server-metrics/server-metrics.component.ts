@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RestService} from "../rest.service";
 
 @Component({
@@ -9,9 +9,10 @@ import {RestService} from "../rest.service";
 export class ServerMetricsComponent implements OnInit {
 
   public servers;
-
   displayedColumns: string[] = ['name', 'available', 'connections', 'cpuUsage', 'memoryUsage'];
   totalRequests: any;
+  @Output()
+  private currentStrategy = new EventEmitter();
   private seconds = 1; // seconds for server data reload
 
   constructor(private restService: RestService) {
@@ -19,12 +20,14 @@ export class ServerMetricsComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.restService.getServers()
+      this.restService.getServerMetrics()
         .subscribe((res) => {
-          this.servers = res;
+          this.servers = res.servers;
+
+          this.currentStrategy.emit(res.strategy);
 
           this.totalRequests = 0;
-          res.foreEach(
+          this.servers.foreEach(
             (fServer) => {
               this.totalRequests += fServer.metrics.connections;
             })

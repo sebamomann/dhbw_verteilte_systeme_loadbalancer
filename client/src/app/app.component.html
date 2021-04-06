@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="metrics">
-    <app-server-metrics></app-server-metrics>
+    <app-server-metrics (currentStrategy)="this.setCurrentStrategy($event)"></app-server-metrics>
   </div>
   <div class="override">
     <app-metrics-override-form></app-metrics-override-form>

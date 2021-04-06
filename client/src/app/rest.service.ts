@@ -12,7 +12,7 @@ export class RestService {
   constructor(private http: HttpClient, private httpClient: HttpClient) {
   }
 
-  getServers(): Observable<any> {
+  getServerMetrics(): Observable<any> {
     let url = environment.balancerUrl + "servers/metrics";
     if(environment.production) {
       url = "https://" + environment.balancerUrl + "servers/metrics";
@@ -21,7 +21,7 @@ export class RestService {
 
     return req.pipe(
       map(res =>
-        res.servers
+        res
       )
     )
   }

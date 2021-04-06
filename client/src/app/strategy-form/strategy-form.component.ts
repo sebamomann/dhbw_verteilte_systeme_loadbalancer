@@ -52,4 +52,8 @@ export class StrategyFormComponent implements OnInit {
         );
     }, 100)
   }
+
+  setCurrentStrategy($event: any) {
+    this.currentStrategy = $event;
+  }
 }
