@@ -13,7 +13,7 @@ export class AppComponent {
   @ViewChild('visualizer', {static: true})
   private visualizer: VisualizerComponent;
 
-  @ViewChild('strategy-form', {static: true})
+  @ViewChild('strategyForm', {static: true})
   private strategyForm: StrategyFormComponent;
 
   private results = [];
