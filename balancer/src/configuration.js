@@ -28,6 +28,10 @@ module.exports = class Configuration {
         return this._strategy;
     }
 
+    get strategyString() {
+        return this.config.strategy;
+    }
+
     get servers() {
         return this._servers;
     }

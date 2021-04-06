@@ -27,7 +27,7 @@ export class ServerMetricsComponent implements OnInit {
           this.currentStrategy.emit(res.strategy);
 
           this.totalRequests = 0;
-          this.servers.foreEach(
+          this.servers.forEach(
             (fServer) => {
               this.totalRequests += fServer.metrics.connections;
             })
