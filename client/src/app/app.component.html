@@ -6,7 +6,7 @@
     <app-metrics-override-form></app-metrics-override-form>
   </div>
   <div class="analyzer">
-    <app-strategy-form></app-strategy-form>
+    <app-strategy-form></app-strategy-form #strategy-form>
 
     <app-analyzer (result)="getResults($event)"></app-analyzer>
   </div>
